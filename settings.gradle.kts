@@ -1,4 +1,4 @@
 rootProject.name = "wiremock-configurer"
-include("backend")
+include("jbback")
 include("wiremock-configurer-ui")
 

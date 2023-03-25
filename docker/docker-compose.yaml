@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  mongo_db:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: templates
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongodb_data_container:/data/db
+
+  mongo_express:
+    image: mongo-express:latest
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://template_config:template_pwd_conf@mongo_db:27017/templates
+      ME_CONFIG_BASICAUTH_USERNAME: express
+      ME_CONFIG_BASICAUTH_PASSWORD: 123456
+    ports:
+      - 8081:8081
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongodb_data_container:
