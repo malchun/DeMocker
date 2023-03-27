@@ -13,4 +13,6 @@ import java.util.UUID;
 public class MockRunRequest {
     @JsonProperty("template-id")
     private UUID templateId;
+    @JsonProperty("port")
+    private int port;
 }

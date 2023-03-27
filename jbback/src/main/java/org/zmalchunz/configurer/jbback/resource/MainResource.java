@@ -1,7 +1,6 @@
 package org.zmalchunz.configurer.jbback.resource;
 
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.web.bind.annotation.*;
 import org.zmalchunz.configurer.jbback.api.MockRunRequest;
 import org.zmalchunz.configurer.jbback.api.Template;
@@ -32,11 +31,19 @@ public class MainResource {
         return template.getId().toString();
     }
 
+//    @PostMapping("/mock")
+//    @ResponseBody
+//    public String createMock(@RequestBody MockServerCreateRequest mockSsrverCreateRequest) {
+//        Template template = templateRepository.findById(mockCreateRequest.getTemplateId()).get();
+//        wiremockService.createMockServer(template, mockCreateRequest.getPort());
+//        return "Success";
+//    }
+
     @PostMapping("/mock/run")
     @ResponseBody
     public String runMock(@RequestBody MockRunRequest mockRunRequest) {
         Template template = templateRepository.findById(mockRunRequest.getTemplateId()).get();
-        wiremockService.runMock(template);
+        wiremockService.runMock(template, mockRunRequest.getPort());
         return "Success";
     }
 }

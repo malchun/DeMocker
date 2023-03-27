@@ -9,8 +9,8 @@ import org.zmalchunz.configurer.jbback.api.Template;
 @Service
 public class WiremockService {
 
-    public void runMock(Template template) {
-        WireMockServer wireMockServer = new WireMockServer(WireMockConfiguration.options().port(2345));
+    public void runMock(Template template, int port) {
+        WireMockServer wireMockServer = new WireMockServer(WireMockConfiguration.options().port(port));
         wireMockServer.addStubMapping(StubMapping.buildFrom(template.getTemplateBody()));
         wireMockServer.start();
     }
