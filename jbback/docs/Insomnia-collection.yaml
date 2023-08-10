@@ -1,0 +1,173 @@
+_type: export
+__export_format: 4
+__export_date: 2023-08-10T21:24:09.216Z
+__export_source: insomnia.desktop.app:v2023.4.0
+resources:
+  - _id: req_5485565b77cb418c92bd65ae484c0d0b
+    parentId: fld_3a1807c5fd824d95b22c867d90cb8f81
+    modified: 1691353797914
+    created: 1691353765358
+    url: "{{url}}:8080/mockserver"
+    name: mockserver all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691353765358
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3a1807c5fd824d95b22c867d90cb8f81
+    parentId: wrk_dd6e8ee9ad004b48b775513076bebb49
+    modified: 1691353737156
+    created: 1691353737156
+    name: Mockserver
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1691353737156
+    _type: request_group
+  - _id: wrk_dd6e8ee9ad004b48b775513076bebb49
+    parentId: null
+    modified: 1691352119941
+    created: 1691352119941
+    name: DeMocker
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_bbb1de2a401b48aeb1643c89d1bf7ba7
+    parentId: fld_3a1807c5fd824d95b22c867d90cb8f81
+    modified: 1691354975213
+    created: 1691353809239
+    url: "{{url}}:8080/mockserver"
+    name: mockserver create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"mocks":[
+        		{ 
+        				"id": "4a1c4bfe-9702-4ea3-a616-d1d823f15461",
+        				"template-id": "4a1c4bfe-9702-4ea3-a616-d1d8c0f15461",
+        				"template-body": "{\"request\": {\"method\": \"GET\", \"url\": \"localhost:2345/mock\"}, \"response\": {\"status\": 200, \"body\": \"Hello world!\", \"headers\": {\"Content-Type\": \"text/plain\"}}}",
+        				"parameters": null
+        		}
+        	],
+        	"port": "2345"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1691353765308
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c8de1abd1f8c4d60ace4b78bda99115b
+    parentId: fld_37c5eb82b37a4126bcc320e2b416f09c
+    modified: 1691700356346
+    created: 1691699899527
+    url: "{{url}}:8080/template"
+    name: template create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: >-
+        {
+        	"name": "Some",
+        	"version": "0.1",
+        	"template-body": "{'request': {'method': 'GET', 'url': 'mock'}, 'response': {'status': 200, 'body': 'Helloworld!'', 'headers': {'Content-Type': 'text/plain'}}}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1691526121945
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_37c5eb82b37a4126bcc320e2b416f09c
+    parentId: wrk_dd6e8ee9ad004b48b775513076bebb49
+    modified: 1691700103022
+    created: 1691353702399
+    name: Templates
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1691353719777.5
+    _type: request_group
+  - _id: req_297d0825bc0e4d4bbd593c61c78e0b1b
+    parentId: fld_37c5eb82b37a4126bcc320e2b416f09c
+    modified: 1691353800441
+    created: 1691352126521
+    url: "{{url}}:8080/template"
+    name: template all
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1691352126521
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_e691095272f2f224aa352b041c2096afbd2b9622
+    parentId: wrk_dd6e8ee9ad004b48b775513076bebb49
+    modified: 1691352119943
+    created: 1691352119943
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1691352119943
+    _type: environment
+  - _id: jar_e691095272f2f224aa352b041c2096afbd2b9622
+    parentId: wrk_dd6e8ee9ad004b48b775513076bebb49
+    modified: 1691352119945
+    created: 1691352119945
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: env_8980cf3e766344b7843983c7acf622db
+    parentId: env_e691095272f2f224aa352b041c2096afbd2b9622
+    modified: 1691352187206
+    created: 1691352149453
+    name: Local
+    data:
+      url: http://localhost
+    dataPropertyOrder:
+      "&":
+        - url
+    color: null
+    isPrivate: false
+    metaSortKey: 1691352149453
+    _type: environment

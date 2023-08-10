@@ -1,6 +1,0 @@
-GET http://localhost:8080
-
-curl -d '{"name":"First", "version": "0.1", "template-body":"{\"request\": {\"method\": \"GET\", \"url\": \"/mock\"}, \"response\": {\"status\": 200, \"body\": \"Hello world!\", \"headers\": {\"Content-Type\": \"text/plain\"}}}"}' -H "Content-Type: application/json" -X POST localhost:8080/template
-curl -d '{"name":"First", "version": "0.1", "template-body":"{\"request\": {\"method\": \"GET\", \"url\": \"localhost:2345/mock\"}, \"response\": {\"status\": 200, \"body\": \"Hello world!\", \"headers\": {\"Content-Type\": \"text/plain\"}}}"}' -H "Content-Type: application/json" -X POST localhost:8080/template
-
-curl -d '{"template-id": "af8d1e40-f010-4627-9e9c-142bf5893dc2"}'  -H "Content-Type: application/json" -X POST localhost:8080/mock/run
