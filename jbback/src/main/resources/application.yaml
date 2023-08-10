@@ -1,6 +1,3 @@
-spring.data.mongodb:
-  host: localhost
-  port: 27017
-  username: template_config
-  password: template_pwd_conf
-  database: templates
+spring.data.mongodb.uri: mongodb://template_config:template_pwd_conf@mongo_db:27017/templates
+logging.level.root: INFO
+logging.level.org.zmalchunz.configurer.jbback: DEBUG

@@ -1,18 +1,16 @@
-package org.zmalchunz.configurer.jbback.wiremock;
+package org.zmalchunz.configurer.jbback.server;
 
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
 import com.github.tomakehurst.wiremock.stubbing.StubMapping;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.zmalchunz.configurer.jbback.api.Mock;
-import org.zmalchunz.configurer.jbback.api.MockServer;
-import org.zmalchunz.configurer.jbback.repositories.MockServerRepository;
+import org.zmalchunz.configurer.jbback.server.repo.MockServerRepository;
+import org.zmalchunz.configurer.jbback.template.engine.SimpleTemplateEngine;
+import org.zmalchunz.configurer.jbback.wiremock.api.Mock;
+import org.zmalchunz.configurer.jbback.server.api.MockServer;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -23,12 +21,13 @@ public class WiremockService {
 
     public WiremockService(MockServerRepository mockServerRepository) {
         this.mockServerRepository = mockServerRepository;
+        this.runningServers = new HashMap<>();
     }
 
     public void runMockServer(MockServer mockServer) {
         log.debug("runMockServer {}", mockServer.getId());
         WireMockServer wireMockServer = new WireMockServer(WireMockConfiguration.options().port(mockServer.getPort()));
-        mockServer.getMocks().forEach(mock -> wireMockServer.addStubMapping(StubMapping.buildFrom(mock.getMockBody())));
+        mockServer.getMocks().forEach(mock -> wireMockServer.addStubMapping(buildStub(mock)));
         try {
             runningServers.put(mockServer.getId(), wireMockServer);
             wireMockServer.start();
@@ -36,6 +35,10 @@ public class WiremockService {
             log.error("Couldn't start server");
             log.debug("Exception: ", e);
         }
+    }
+
+    private StubMapping buildStub(Mock mock) {
+        return StubMapping.buildFrom(SimpleTemplateEngine.format(mock.getTemplateBody(), mock.getParameters()));
     }
 
 

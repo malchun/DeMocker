@@ -1,10 +1,9 @@
-package org.zmalchunz.configurer.jbback.resource;
+package org.zmalchunz.configurer.jbback.template;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.zmalchunz.configurer.jbback.api.Template;
-import org.zmalchunz.configurer.jbback.api.TemplateRequest;
-import org.zmalchunz.configurer.jbback.wiremock.TemplateService;
+import org.zmalchunz.configurer.jbback.template.api.Template;
+import org.zmalchunz.configurer.jbback.template.api.TemplateRequest;
 
 import java.util.List;
 import java.util.UUID;

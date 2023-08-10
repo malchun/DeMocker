@@ -1,13 +1,9 @@
-package org.zmalchunz.configurer.jbback.wiremock;
+package org.zmalchunz.configurer.jbback.template;
 
-import com.github.tomakehurst.wiremock.WireMockServer;
-import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
-import com.github.tomakehurst.wiremock.stubbing.StubMapping;
 import org.springframework.stereotype.Service;
-import org.zmalchunz.configurer.jbback.api.MockServer;
-import org.zmalchunz.configurer.jbback.api.Template;
-import org.zmalchunz.configurer.jbback.repositories.MockServerRepository;
-import org.zmalchunz.configurer.jbback.repositories.TemplateRepository;
+import org.zmalchunz.configurer.jbback.template.api.Template;
+import org.zmalchunz.configurer.jbback.template.engine.SimpleTemplateEngine;
+import org.zmalchunz.configurer.jbback.template.repo.TemplateRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +19,7 @@ public class TemplateService {
     }
 
     public UUID createTemplate(Template newTemplate) {
+        newTemplate.setParameters(SimpleTemplateEngine.getParameters(newTemplate.getTemplateBody()));
         return templateRepository.save(newTemplate).getId();
     }
 

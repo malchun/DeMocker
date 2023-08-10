@@ -1,12 +1,10 @@
-package org.zmalchunz.configurer.jbback.api;
+package org.zmalchunz.configurer.jbback.template.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
-import org.springframework.lang.NonNull;
-
-import java.util.UUID;
+import org.zmalchunz.configurer.jbback.template.api.Template;
 
 @Data
 @Jacksonized

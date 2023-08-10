@@ -1,7 +1,8 @@
-package org.zmalchunz.configurer.jbback.api;
+package org.zmalchunz.configurer.jbback.template.api;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.lang.NonNull;
 import org.zmalchunz.configurer.jbback.mongo.utility.UuidIdentity;
@@ -17,5 +18,6 @@ public class Template extends UuidIdentity {
     @NonNull
     private String version;
     private String templateBody;
-    private Set<String> listOfParameters;
+    @Setter
+    private Set<String> parameters;
 }

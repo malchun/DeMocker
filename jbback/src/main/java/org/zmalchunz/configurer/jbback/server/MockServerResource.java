@@ -1,19 +1,15 @@
-package org.zmalchunz.configurer.jbback.resource;
+package org.zmalchunz.configurer.jbback.server;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.zmalchunz.configurer.jbback.api.MockServer;
-import org.zmalchunz.configurer.jbback.api.MockServerCreateRequest;
-import org.zmalchunz.configurer.jbback.api.Template;
-import org.zmalchunz.configurer.jbback.api.TemplateRequest;
-import org.zmalchunz.configurer.jbback.wiremock.TemplateService;
-import org.zmalchunz.configurer.jbback.wiremock.WiremockService;
+import org.zmalchunz.configurer.jbback.server.api.MockServer;
+import org.zmalchunz.configurer.jbback.server.api.MockServerCreateRequest;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/mockserver")
+@RequestMapping("/server")
 @AllArgsConstructor
 public class MockServerResource {
 
@@ -28,14 +24,20 @@ public class MockServerResource {
     @PostMapping
     @ResponseBody
     public UUID createMockServer(@RequestBody MockServerCreateRequest mockServerCreateRequest) {
-        UUID id = wiremockService.createMockServer(mockServerCreateRequest.toMockServer());
-        return id;
+        return wiremockService.createMockServer(mockServerCreateRequest.toMockServer());
     }
 
     @PostMapping("/{id}/run")
     @ResponseBody
     public String runMock(@PathVariable UUID id) {
         wiremockService.runMockServer(id);
+        return "Success";
+    }
+
+    @PostMapping("/{id}/stop")
+    @ResponseBody
+    public String stopMock(@PathVariable UUID id) {
+        wiremockService.stopMockServer(id);
         return "Success";
     }
 }

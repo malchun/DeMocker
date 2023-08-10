@@ -1,4 +1,4 @@
-package org.zmalchunz.configurer.jbback.api;
+package org.zmalchunz.configurer.jbback.wiremock.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
@@ -15,9 +15,11 @@ import java.util.UUID;
 @Jacksonized
 @Builder
 public class Mock extends UuidIdentity {
+    @JsonProperty("name")
+    private String name;
     @JsonProperty("template-id")
     private UUID templateId;
-    @JsonProperty("mock-body")
-    private String mockBody;
+    @JsonProperty("template-body")
+    private String templateBody;
     private Map<String, String> parameters;
 }
